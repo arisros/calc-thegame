@@ -1,0 +1,14 @@
+{
+  "name": "calcgamehints",
+  "version": "1.0.0",
+  "description": "calculator the game hints",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-color-log": "^2.1.2"
+  }
+}
