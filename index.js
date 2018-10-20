@@ -3,6 +3,8 @@ const maping = require('./tools/maping')
 const executor = require('./executor')
 const permutations = require('./tools/permutations')
 const printKey = require('./tools/printKey')
+const printError = require('./tools/printError')
+const overide = require('./tools/overide')
 
 /**
  * 
@@ -27,11 +29,17 @@ function startSolving(quiz, operators) {
 function solving(allPosibilities, quiz, operatorsWithId) {
   allPosibilities.forEach(e => {
     let start = quiz.start
+    let operatorWithId = operatorsWithId
+    // console.log(e)
     e.forEach(g => {
-      let operator = operatorsWithId.filter(k => k.id === g)
-      start = executor(parseFloat(start), operator[0])
+      let operator = operatorWithId.filter(k => k.id === g)
+      if (operator[0].overide) {
+        operatorWithId = overide(operatorWithId, operator[0])
+      } else {
+        start = executor(parseFloat(start), operator[0], operatorWithId)
+      }
       if (parseFloat(start) === quiz.goal) {
-        printKey(e, operatorsWithId)
+        printKey(e, operatorWithId, quiz)
       }
     })
   })

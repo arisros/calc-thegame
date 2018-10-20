@@ -6,7 +6,10 @@ function generateStepId(operators) {
       operating: e.operating,
       value: e.value,
       oldVal: e.oldValue,
-      newVal: e.newValue
+      newVal: e.newValue,
+      overide: e.overide,
+      other: e.other,
+      history: []
     }
   })
   let id = operatorsWithId.map(e => e.id)

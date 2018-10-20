@@ -1,19 +1,19 @@
-var add = require('./operators').add
-var sub = require('./operators').sub
-var mul = require('./operators').mul
-var div = require('./operators').div
-var mirror = require('./operators').mirror
-var trimBack = require('./operators').trimBack
-var trimFront = require('./operators').trimFront
-var addBack = require('./operators').addBack
-var transform = require('./operators').transform
-var pow = require('./operators').pow
-var flip = require('./operators').flip
-var mirror = require('./operators').mirror
-var reverse = require('./operators').reverse
-var sum = require('./operators').sum
+const add = require('./operators').add
+const sub = require('./operators').sub
+const mul = require('./operators').mul
+const div = require('./operators').div
+const trimBack = require('./operators').trimBack
+const trimFront = require('./operators').trimFront
+const addBack = require('./operators').addBack
+const transform = require('./operators').transform
+const pow = require('./operators').pow
+const flip = require('./operators').flip
+const mirror = require('./operators').mirror
+const reverse = require('./operators').reverse
+const sum = require('./operators').sum
+const shift = require('./operators').shift
 
-function solvePerItem(value, operator) {
+function solvePerItem(value, operator, allOperators) {
   let res = 0
   switch (operator.operating) {
     case 'add':
@@ -30,10 +30,6 @@ function solvePerItem(value, operator) {
 
     case 'div':
       res = div(value, operator.value)
-      break;
-
-    case 'mirror':
-      res = mirror(value)
       break;
 
     case 'trimBack':
@@ -71,7 +67,14 @@ function solvePerItem(value, operator) {
     case 'sum':
       res = sum(value)
       break;
-
+    
+    case 'shift':
+      res = shift(value)
+      break;
+    
+    case 'changeTheWorld':
+      res = changeTheWorld(operator, allOperators)
+      break;
 
     default:
       break;

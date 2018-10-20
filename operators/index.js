@@ -56,6 +56,7 @@ function transform(start, operator) {
 function pow(start, value) {
   return Math.pow(start, value)
 }
+
 function flip(start) {
   if (start < 0) return Math.abs(start)
   return -Math.abs(start)
@@ -81,14 +82,31 @@ function sum(start) {
   return newValue
 }
 
+function shift(start) {
+  let arr = []
+  let transform = Math.abs(start)
+  let old = transform.toString().split('')
+  for (let i = 0; i < old.length; i++) {
+    let pick = i - 1
+    if (i === 0) pick = old.length - 1
+    arr[pick] = old[i]
+  }
+  if (start < 0) arr.unshift('-')
+  return arr.join('') 
+}
+
 function mirror(start) {
-  let normalize = Math.abs(start)
-  var value = normalize.toString().split('')
-  var newValue = start.toString().split('')
+  const normalize = Math.abs(start)
+  const value = normalize.toString().split('')
+  const newValue = start.toString().split('')
   for (let i = value.length - 1; i >= 0; i--) {
     newValue.push(value[i])
   }
   return newValue.join('')
+}
+
+function changeTheWorld(operator, allOperators) {
+  // console.log(allOperators)
 }
 
 
@@ -106,5 +124,7 @@ module.exports = {
   flip: flip,
   reverse: reverse,
   sum: sum,
-  mirror: mirror
+  mirror: mirror,
+  shift: shift,
+  changeTheWorld
 }
