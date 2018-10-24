@@ -62,6 +62,12 @@ function flip(start) {
   return -Math.abs(start)
 }
 
+function inv(start, value) {
+  let values = start.toString().split('')
+  let have = values.map(e => e > 0 ? value - parseInt(e) : e )
+  return have.join('')
+}
+
 function reverse(start) {
   let arr = []
   let transform = Math.abs(start)
@@ -92,7 +98,7 @@ function shift(start) {
     arr[pick] = old[i]
   }
   if (start < 0) arr.unshift('-')
-  return arr.join('') 
+  return parseFloat(arr.join(''))
 }
 
 function mirror(start) {
@@ -105,10 +111,12 @@ function mirror(start) {
   return newValue.join('')
 }
 
-function changeTheWorld(operator, allOperators) {
-  // console.log(allOperators)
+function addBackStore(start, temp) {
+  if (temp === null) {
+    return start
+  }
+  return parseFloat(start.toString() + temp.toString())
 }
-
 
 module.exports = {
   add: add,
@@ -126,5 +134,6 @@ module.exports = {
   sum: sum,
   mirror: mirror,
   shift: shift,
-  changeTheWorld
+  addBackStore,
+  inv: inv
 }
