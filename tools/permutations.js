@@ -17,7 +17,6 @@ function permutationsWihtRepeat(options, moves = options.length) {
       permutations.push([currentOption].concat(smallerPermutation));
     });
   });
-
   return permutations;
 }
 
