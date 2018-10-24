@@ -12,8 +12,10 @@ const mirror = require('./operators').mirror
 const reverse = require('./operators').reverse
 const sum = require('./operators').sum
 const shift = require('./operators').shift
+const addBackStore = require('./operators').addBackStore
+const inv = require('./operators').inv
 
-function solvePerItem(value, operator, allOperators) {
+function solvePerItem(value, operator, temp) {
   let res = 0
   switch (operator.operating) {
     case 'add':
@@ -72,8 +74,12 @@ function solvePerItem(value, operator, allOperators) {
       res = shift(value)
       break;
     
-    case 'changeTheWorld':
-      res = changeTheWorld(operator, allOperators)
+    case 'addBackStore':
+      res = addBackStore(value, temp)
+      break;
+    
+    case 'inv':
+      res = inv(value, operator.value)
       break;
 
     default:
@@ -84,3 +90,4 @@ function solvePerItem(value, operator, allOperators) {
 }
 
 module.exports = solvePerItem
+
