@@ -1,4 +1,4 @@
-const quiz = require('./quiz')
+// const quiz = require('./quiz')
 const maping = require('./tools/maping')
 const executor = require('./executor')
 const permutations = require('./tools/permutations')
@@ -6,7 +6,9 @@ const printKey = require('./tools/printKey')
 const printError = require('./tools/printError')
 const overide = require('./tools/overide')
 const filteringPosibilities = require('./tools/filteringPosibilities')
-
+// const jsonfile = require('jsonfile')
+// const file = 'db/quiz.json'
+// const quiz = jsonfile.readFileSync(file)
 /**
  * 
  * @param {object} quiz object of quiz
@@ -16,14 +18,14 @@ function startSolving(quiz, operators) {
   const id = maping(operators).id
   const findStore = operators.filter(e => e.operating === 'store')
   const addStorePosiblities = findStore.length > 0 ? quiz.moves + 2 : quiz.moves
-  
   const allPosibilities = permutations(id, addStorePosiblities)
+  // console.log( id.length ,addStorePosiblities)
   const operatorsWithId = maping(operators).operatorsWithId
   const storeId = operatorsWithId.filter(e => e.operating === 'store')
   const filterPosibilities = allPosibilities.filter(filteringPosibilities.bind(this, storeId))
   
-  console.log(id, addStorePosiblities, '===', allPosibilities.length)
-  console.log(filterPosibilities.length)
+  // console.log(id.length, addStorePosiblities, '===', allPosibilities.length)
+  // console.log(filterPosibilities.length)
   // solving all posibilities
   return solving(filterPosibilities, quiz, operatorsWithId)
 }
@@ -58,7 +60,7 @@ function solving(allPosibilities, quiz, operatorsWithId) {
       if (parseFloat(start) === quiz.goal && didntStore === quiz.moves) {
         let found = { key: e, operator, operatorWithId, quiz }
         keyFounds.push(found)
-        // printKey(e, operatorWithId, quiz)
+        printKey(e, operatorWithId, quiz)
       }
     })
   })
